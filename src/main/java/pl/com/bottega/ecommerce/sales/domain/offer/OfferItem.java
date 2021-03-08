@@ -35,9 +35,7 @@ public class OfferItem {
     private String currency;
 
     // discount
-    private String discountCause;
-
-    private BigDecimal discount;
+    private Discount discount;
 
     public OfferItem(String productId, BigDecimal productPrice, String productName, Date productSnapshotDate,
             String productType, int quantity) {
@@ -53,8 +51,8 @@ public class OfferItem {
         this.productType = productType;
 
         this.quantity = quantity;
-        this.discount = discount;
-        this.discountCause = discountCause;
+
+        this.discount=new Discount(discount,discountCause);
 
         BigDecimal discountValue = new BigDecimal(0);
         if (discount != null) {
@@ -93,11 +91,11 @@ public class OfferItem {
     }
 
     public BigDecimal getDiscount() {
-        return discount;
+        return discount.getDiscount();
     }
 
     public String getDiscountCause() {
-        return discountCause;
+        return discount.getDiscountCause();
     }
 
     public int getQuantity() {
@@ -108,7 +106,7 @@ public class OfferItem {
     public int hashCode() {
         final int prime = 31;
         int result = 1;
-        result = prime * result + (discount == null ? 0 : discount.hashCode());
+        result = prime * result + (discount.getDiscount() == null ? 0 : discount.getDiscount().hashCode());
         result = prime * result + (productName == null ? 0 : productName.hashCode());
         result = prime * result + (productPrice == null ? 0 : productPrice.hashCode());
         result = prime * result + (productId == null ? 0 : productId.hashCode());
@@ -176,7 +174,7 @@ public class OfferItem {
 
     /**
      *
-     * @param item
+     * @param other
      * @param delta
      *            acceptable percentage difference
      * @return

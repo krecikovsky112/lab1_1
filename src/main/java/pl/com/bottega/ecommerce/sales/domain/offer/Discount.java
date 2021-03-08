@@ -7,10 +7,9 @@ public class Discount {
 
     private BigDecimal discount;
 
-    public Discount(BigDecimal discount, String discountCause)
-    {
-        this.discount=discount;
-        this.discountCause=discountCause;
+    public Discount(BigDecimal discount, String discountCause) {
+        this.discount = discount;
+        this.discountCause = discountCause;
     }
 
     public BigDecimal getDiscount() {
